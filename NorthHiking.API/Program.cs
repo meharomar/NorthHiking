@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using NorthHiking.API.Data;
+using NorthHiking.API.Mappings;
+using NorthHiking.API.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<NorthHikingDbContext>(Options =>
 Options.UseSqlServer(builder.Configuration.GetConnectionString("NorthHikingConnectionString")));
+
+builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
 var app = builder.Build();
 
