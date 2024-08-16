@@ -16,6 +16,7 @@ builder.Services.AddDbContext<NorthHikingDbContext>(Options =>
 Options.UseSqlServer(builder.Configuration.GetConnectionString("NorthHikingConnectionString")));
 
 builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
+builder.Services.AddScoped<IWalkRepository, SQLWalkRepository>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
 var app = builder.Build();
